@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year – Careers360</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at top, #0b132b, #020617);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #e5e7eb;
+}
+
+/* SNOW */
+.snow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snow span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.9;
+    animation: snowFall linear infinite, snowDrift ease-in-out infinite;
+}
+
+@keyframes snowFall {
+    from { top: -10vh; }
+    to   { top: 110vh; }
+}
+
+@keyframes snowDrift {
+    0%,100% { transform: translateX(0); }
+    50% { transform: translateX(30px); } /* wind strength */
+}
+
+/* TEXT */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* CARD */
+.card {
+    position: relative;
+    z-index: 2;
+    background: rgba(11, 19, 43, 0.75);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    padding: 45px 50px;
+    max-width: 460px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.logo {
+    font-size: 0.9em;
+    letter-spacing: 0.35em;
+    color: #f97316;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.1em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #bae6fd, #fde68a, #fb7185, #bae6fd);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+}
+
+h2 {
+    font-size: 1.1em;
+    background: linear-gradient(90deg, #cbd5f5, #fde68a, #fb7185, #cbd5f5);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 22px;
+    animation: gradientShift 3s ease infinite;
+}
+
+.divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, #60a5fa, #facc15);
+    margin: 18px auto 20px;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 0.75em;
+    color: #9ca3af;
+    transition: opacity 1s ease, transform 1s ease;
+}
+.footer.hide {
+    opacity: 0;
+    transform: translateY(10px);
+}
+</style>
+</head>
+<body>
+
+<div class="snow" id="snow"></div>
+
+<div class="card">
+    <div class="logo">CAREERS360</div>
+    <h1>Happy New Year 2026</h1>
+    <h2>Warm Wishes from Careers360</h2>
+    <div class="divider"></div>
+    <div class="footer" id="autoFooter">— IT TEAM —</div>
+</div>
+
+<script>
+const snowContainer = document.getElementById("snow");
+
+for (let i = 0; i < 120; i++) {
+    const s = document.createElement("span");
+    s.style.left = Math.random() * 100 + "vw";
+
+    const fallTime = 12 + Math.random() * 8;   // slower fall
+    const driftTime = 4 + Math.random() * 3;
+
+    s.style.animationDuration = fallTime + "s, " + driftTime + "s";
+    s.style.animationDelay = Math.random() * 5 + "s, 0s";
+    s.style.opacity = Math.random() * 0.5 + 0.4;
+
+    snowContainer.appendChild(s);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.getElementById("autoFooter").classList.add("hide");
+    }, 3000);
+});
+</script>
+
+</body>
+</html>
